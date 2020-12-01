@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Make me smile</title> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="./styles.css">
+        <meta charset="UTF-8">
+        
+
+    </head>
+    <body > 
+        <!-- NAV BAR -->
+        <nav>
+            <div class="nav-wrapper container">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="logged-in" style="display: none">
+                <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+            </li>
+            <li class="logged-in" style="display: none">
+                <a href="#" id="logout" class="grey-text modal-trigger">Log out</a>
+            </li>
+            <li class="admin" style="display: none">
+                <a href="#"  class="grey-text modal-trigger"  data-target="modal-create">Create guide</a>
+            </li>
+            <li class="logged-out" style="display: none">
+                <a href="#"  class="grey-text modal-trigger"  data-target="modal-login">Log-in</a>
+            </li>
+            <li class="logged-out" style="display: none">
+                <a href="#"  class="grey-text  modal-trigger"  data-target="modal-signup">Sign up</a>
+            </li>
+        </ul>
+    </div>
+        </nav>
+
+            <form class="center-align admin-actions admin" style="margin:20px auto; max-width:300px; display: none">
+                <input type="email" id="admin-email" class="white" placeholder="Admin email" required>
+                <button class="btn-small yellow darken-2">Make admin</button>
+            </form>
+        <!-- SIGN UP MODAL -->
+        <div id="modal-signup" class="modal">
+            <div class="modal-content">
+                
+                <button onclick = "googleSignin()">Google Signin</button>
+                <button onclick = "googleSignout()">Google Signout</button>
+                <hr>
+                <h4>Sign up</h4>
+                <form id="signup-form">
+                    <div class="input-field">
+                        <input type="email" id="signup-email" required>
+                        <label for="signup-email">Email address </label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" id="signup-password" required>
+                        <label for="signup-password">password</label>
+                    </div>
+
+                    <div class="input-field">
+                        <select id="favourite-fruit">
+                            <option value="orange">Orange</option>
+                            <option value="lemon">Lemon</option>
+                            <option value="strawberry">Strawberry</option>
+                            <option value="watermelon">Watermelon</option>
+                            <option value="apple">Apple</option>
+                            <option value="banana">Banana</option>
+                        </select>
+                        <label for="favourite-fruit">Favourite fruit</label>
+                    </div>
+
+                    <button class="btn">SIGN UP!</button>
+                    <p class="error pink center-align"></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- LOG IN MODAL -->
+        <div id="modal-login" class="modal">
+            <div class="modal-content">
+                <h4>Log in</h4>
+                <form id="login-form">
+                    <div class="input-field">
+                        <input type="email" id="login-email" required>
+                        <label for="login-email">Email address </label>
+                    </div>
+
+                    <div class="input-field">
+
+                        <input type="password" id="login-password" required>
+                        <label for="login-password">password</label>
+                    </div>
+                    <button class="btn">Log in</button>
+
+                    <p class="error pink center-align"></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- ACCOUNT MODAL   -->
+        <div id="modal-account"  class="modal">
+            <div class="modal-content">
+                <h4>Account details</h4>
+                <div class="account-details"></div>
+            </div>
+        </div>
+
+        <!-- CREATE GUIDE MODAL -->
+        <div id="modal-create" class="modal">
+            <div class="modal-content">
+                <h4>Create guide</h4>
+                <form id="create-form">
+                    <div class="input-field">
+                        <textarea name="content" id="content" cols="30" rows="10" required></textarea>
+                        <label for="content"></label>
+                    </div>
+                    <button  class="btn">Create</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- GUIDE LIST -->
+        <div class="container">
+            <ul class="collapsible z-depth-0 guides">
+             
+                
+            </ul>
+        </div>
+
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-functions.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCjuqWE6K_nGCr2L5FUQgKyWy0u-R95CMU",
+    authDomain: "makemesmile-59dbd.firebaseapp.com",
+    databaseURL: "https://makemesmile-59dbd.firebaseio.com",
+    projectId: "makemesmile-59dbd",
+    appId: "1:7060579263:web:bd55ecdfc74538011df70a"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+
+  //MAKE AUTH AND FIRESTORE REFERENCES 
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const functions = firebase.functions();
+
+    db.settings({timestampsInSnapshot:true})
+
+</script>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="./java.js"></script>
+    
+    </body>
+</html>
