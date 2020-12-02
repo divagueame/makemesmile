@@ -13,9 +13,9 @@
     </head>
     <body > 
         <!-- NAV BAR -->
-        <nav class="indigo"> 
-            <div class="nav-wrapper container ">
-                <img src="./img/drops.png" class="drop-icon" alt="Leave a happiness drop">
+        <nav class="indigo">
+            <div class="nav-wrapper container">
+                <img src="./img/drop.png" class="drop-icon" alt="Leave a happiness drop">
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li class="logged-in" style="display: none">
                 <a href="#" class="modal-trigger" data-target="modal-account">Account</a>
@@ -43,13 +43,15 @@
 
         <!-- SIGN UP MODAL -->
         <div id="modal-signup" class="modal">
-            <div class="modal-content">
-                <button onclick = "googleSignin()">Google Signin</button>
 
-           
+            <div class="modal-content center-align">
+                
+                <a class="btn waves-effect waves-light " onclick = "googleSignin()">
+                <img class="googleIcon left-align" src="./img/googleicon.svg" alt="Sign-Up with Google">
+                Sign-Up with Google</a>
                 <hr>
-                <h4>Sign up</h4>
                 <form id="signup-form">
+                    <h6>Email Sign up</h6>
                     <div class="input-field">
                         <input type="email" id="signup-email" required>
                         <label for="signup-email">Email address </label>
@@ -59,7 +61,8 @@
                         <input type="password" id="signup-password" required>
                         <label for="signup-password">password</label>
                     </div>
-
+                    
+<!-- 
                     <div class="input-field">
                         <select id="favourite-fruit">
                             <option value="orange">Orange</option>
@@ -70,12 +73,14 @@
                             <option value="banana">Banana</option>
                         </select>
                         <label for="favourite-fruit">Favourite fruit</label>
-                    </div>
+                    </div> -->
 
                     <button class="btn">SIGN UP!</button>
                     <p class="error pink center-align"></p>
                 </form>
+
             </div>
+
         </div>
 
         <!-- LOG IN MODAL -->
@@ -121,10 +126,11 @@
                 </form>
             </div>
         </div>
-
-
+        
+        <div class="container"><a class="waves-effect waves-light btn-large"><i class="material-icons left">add</i>Add a happiness drop!</a>
+        </div>
         <!-- DROP SHOWCASE -->
-        <button onclick = "googleSignout()">Google Signout</button>
+        <!-- <button onclick = "googleSignout()">Google Signout</button> -->
         <div class="container drop-container">
             <div class="drop center-align box valign-wrapper">
             

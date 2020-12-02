@@ -18,14 +18,14 @@
     })
   }
 
-  function googleSignout(){
-    firebase.auth().signOut().then(()=>{
-      console.log("Google user has signed out successfully")
-    }).catch((err)=>{
-      console.log("Google user could not sign out.")
-      console.log(err.message)
-    })
-  }
+  // function googleSignout(){
+  //   firebase.auth().signOut().then(()=>{
+  //     console.log("Google user has signed out successfully")
+  //   }).catch((err)=>{
+  //     console.log("Google user could not sign out.")
+  //     console.log(err.message)
+  //   })
+  // }
 
 
 //Add admin cloud function
