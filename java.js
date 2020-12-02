@@ -28,8 +28,8 @@
   // const logInModal = document.querySelector("#modal-login");
   // logInModal.addEventListener('click', googleSignin('login'));
 
-  // const signUpModal = document.querySelector("#google-signup");
-  // signUpModal.addEventListener('click', googleSignin('signup'));
+  const googleSignup = document.querySelector("#google-signup");
+  googleSignup.addEventListener('click', googleSignin('pollas sin up'));
 
 
   //Listen to auth status changes
