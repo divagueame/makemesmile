@@ -23,10 +23,10 @@
   }
 
   const googleSignup = document.querySelector("#google-signup");
-  googleSignup.addEventListener('click', googleSignin());
+  googleSignup.addEventListener('click', googleSignin);
 
   const googleLogin = document.querySelector("#google-login");
-  googleLogin.addEventListener('click', googleSignin());
+  googleLogin.addEventListener('click', googleSignin);
 
   //Listen to auth status changes
   auth.onAuthStateChanged(user => {
