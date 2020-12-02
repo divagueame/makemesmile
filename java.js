@@ -10,13 +10,14 @@
       var user = result.user;
       console.log("You have sucessfully signed through Google")
       console.log(token,user);
-      if(source=='login'){
-        const modalLogin = document.querySelector("#modal-login");
-        M.Modal.getInstance(modalLogin).close();
-      } else {
-        const modal = document.querySelector("#modal-signup");
-        M.Modal.getInstance(modal).close();
-      }
+      console.log("Me sale de la: ", source)
+      // if(source=='login'){
+      //   const modalLogin = document.querySelector("#modal-login");
+      //   M.Modal.getInstance(modalLogin).close();
+      // } else {
+      //   const modal = document.querySelector("#modal-signup");
+      //   M.Modal.getInstance(modal).close();
+      // }
 
     }).catch((err)=>{
       var errorMessage = err.message;
@@ -24,11 +25,11 @@
     })
   }
 
-  const logInModal = document.querySelector("#modal-login");
-  logInModal.addEventListener('click', googleSignin('login'));
+  // const logInModal = document.querySelector("#modal-login");
+  // logInModal.addEventListener('click', googleSignin('login'));
 
-  const signUpModal = document.querySelector("#modal-signup");
-  signUpModal.addEventListener('click', googleSignin('signup'));
+  // const signUpModal = document.querySelector("#google-signup");
+  // signUpModal.addEventListener('click', googleSignin('signup'));
 
 
   //Listen to auth status changes
