@@ -20,9 +20,10 @@
     })
   }
 
-  function googleSignOut(){
+  function googleSignout(){
+    console.log("YEAH")
     firebase.auth().signOut().then(()=>{
-      console.log("Sign in successful")
+      console.log("Sign out successful")
     }).catch((err)=>{
       console.log(err.message)
     })
