@@ -138,13 +138,11 @@ const accountDetails = document.querySelector(".account-details");
 
 const setupUI = function(user){
   if(user){
-
     //Account info
     db.collection('users').doc(user.uid).get().then((doc)=>{
        const html = `
     <div class="black-text"> Logged in as ${user.email}</div>
-    <div class="black-text">Your favourite fruit is ${doc.data().favouriteFruit}</div>
-    `;
+    `; //  <div class="black-text">Your favourite fruit is ${doc.data().favouriteFruit}</div>
     accountDetails.innerHTML = html;
     })
 
