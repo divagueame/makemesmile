@@ -4,22 +4,31 @@
   //Google provider instance
   var provider =  new firebase.auth.GoogleAuthProvider();
 
-  function googleSignin(){
+  function googleSignin(source){
     firebase.auth().signInWithPopup(provider).then((result)=>{
       var token = result.credential.accessToken;
       var user = result.user;
       console.log("You have sucessfully signed through Google")
       console.log(token,user);
-      // const modal = document.querySelector("#modal-signup");
-      const modalLogin = document.querySelector("#modal-login");
+      if(source=='login'){
+        const modalLogin = document.querySelector("#modal-login");
+        M.Modal.getInstance(modalLogin).close();
+      } else {
+        const modal = document.querySelector("#modal-signup");
+        M.Modal.getInstance(modal).close();
+      }
 
-      // M.Modal.getInstance(modal).close();
-      M.Modal.getInstance(modalLogin).close();
     }).catch((err)=>{
       var errorMessage = err.message;
       console.log( errorMessage)
     })
   }
+
+  const logInModal = document.querySelector("#modal-login");
+  logInModal.addEventListener('click', googleSignin('login'));
+
+  const signUpModal = document.querySelector("#modal-signup");
+  signUpModal.addEventListener('click', googleSignin('signup'));
 
 
   //Listen to auth status changes
