@@ -11,13 +11,13 @@
       console.log("You have sucessfully signed through Google")
       console.log(token,user);
       console.log("Me sale de la: ", source)
-      // if(source=='login'){
-      //   const modalLogin = document.querySelector("#modal-login");
-      //   M.Modal.getInstance(modalLogin).close();
-      // } else {
-      //   const modal = document.querySelector("#modal-signup");
-      //   M.Modal.getInstance(modal).close();
-      // }
+      if(source=='google-login'){
+        const modalLogin = document.querySelector("#modal-login");
+        M.Modal.getInstance(modalLogin).close();
+      } else {
+        const modal = document.querySelector("#modal-signup");
+        M.Modal.getInstance(modal).close();
+      }
 
     }).catch((err)=>{
       var errorMessage = err.message;
@@ -25,12 +25,11 @@
     })
   }
 
-  // const logInModal = document.querySelector("#modal-login");
-  // logInModal.addEventListener('click', googleSignin('login'));
-
   const googleSignup = document.querySelector("#google-signup");
-  googleSignup.addEventListener('click', googleSignin('pollas sin up'));
+  googleSignup.addEventListener('click', googleSignin('google-signup'));
 
+  const googleLogin = document.querySelector("#google-login");
+  googleLogin.addEventListener('click', googleSignin('google-login'));
 
   //Listen to auth status changes
   auth.onAuthStateChanged(user => {
