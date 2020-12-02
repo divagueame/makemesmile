@@ -19,6 +19,10 @@ i:hover {
     width: 4rem;
     height: 4rem;
 }
+.drop-icon-small {
+    width: 2rem;
+    height: 2rem;
+}
 
 .googleIcon {
     width: 1rem;

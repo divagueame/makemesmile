@@ -18,34 +18,12 @@
     })
   }
 
-  // function googleSignout(){
-  //   firebase.auth().signOut().then(()=>{
-  //     console.log("Google user has signed out successfully")
-  //   }).catch((err)=>{
-  //     console.log("Google user could not sign out.")
-  //     console.log(err.message)
-  //   })
-  // }
-
-
-//Add admin cloud function
-const adminForm = document.querySelector(".admin-actions");
-
-adminForm.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  const adminEmail = document.querySelector('#admin-email').value;
-  const addAdminRole = functions.httpsCallable('addAdminRole');
-  addAdminRole({email: adminEmail}).then((result)=>{
-    console.log(result)
-  })
-
-})
 
   //Listen to auth status changes
   auth.onAuthStateChanged(user => {
     if(user){
       user.getIdTokenResult().then((idTokenResult)=>{
-        console.log(idTokenResult.claims);
+        console.log("idTokenResult.claims:", idTokenResult.claims);
         user.admin = idTokenResult.claims.admin;
         setupUI(user);
       });
@@ -66,13 +44,22 @@ adminForm.addEventListener('submit', (e)=>{
 
   });
 
+// Add new drop
+const addDropForm = document.querySelector("#addDropForm");
+addDropForm.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  db.collection('drops1').add({
+    dropText: addDropForm[''].value,
 
-  //Create new guide / drop
+  })
+});
+
+  //Create new guide
   const createForm = document.querySelector("#create-form");
   createForm.addEventListener('submit', (e)=>{
   e.preventDefault();
   db.collection('drops').add({
-    dropsContent: createForm['content'].value
+    dropsContent: createForm['dropText'].value
   }).then(()=>{
     //Close the modal and reset the form
     const modal = document.querySelector("#modal-create");
@@ -144,19 +131,16 @@ const guidesList = document.querySelector(".guides");
 const loggedOutLinks = document.querySelectorAll(".logged-out");
 const loggedInLinks = document.querySelectorAll(".logged-in");
 const accountDetails = document.querySelector(".account-details");
-const adminItems = document.querySelectorAll(".admin")
+
 
 const setupUI = function(user){
   if(user){
-    if(user.admin){
-      adminItems.forEach(item => { item.style.display = 'block'});
-    }
+
     //Account info
     db.collection('users').doc(user.uid).get().then((doc)=>{
        const html = `
     <div class="black-text"> Logged in as ${user.email}</div>
     <div class="black-text">Your favourite fruit is ${doc.data().favouriteFruit}</div>
-    <div class="pink-text">${user.admin ? 'You are an admin' : ''}</div>
     `;
     accountDetails.innerHTML = html;
     })
@@ -171,7 +155,7 @@ const setupUI = function(user){
     });
   }
   else{
-    adminItems.forEach(item => { item.style.display = 'none'});
+    
     // Empty account details
     accountDetails.innerHTML = '';
 

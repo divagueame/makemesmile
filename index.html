@@ -18,16 +18,18 @@
                 <img src="./img/drop.png" class="drop-icon" alt="Leave a happiness drop">
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li class="logged-in" style="display: none">
+                <a href="#" class="waves-effect waves-light btn-large modal-trigger"  data-target="modal-addDrop">
+                    <i class="material-icons left">add</i>Add a happiness drop!
+                </a>
+            </li>
+            <li class="logged-in" style="display: none">
                 <a href="#" class="modal-trigger" data-target="modal-account">Account</a>
             </li>
             <li class="logged-in" style="display: none">
                 <a href="#" id="logout" class="modal-trigger">Log out</a>
             </li>
-            <li class="admin" style="display: none">
-                <a href="#"  class="modal-trigger"  data-target="modal-create">Create guide</a>
-            </li>
             <li class="logged-out" style="display: none">
-                <a href="#"  class="modal-trigger"  data-target="modal-login">Log-in</a>
+                <a href="#"  class="modal-trigger" data-target="modal-login">Log-in</a>
             </li>
             <li class="logged-out" style="display: none">
                 <a href="#"  class="modal-trigger"  data-target="modal-signup">Sign up</a>
@@ -35,23 +37,18 @@
         </ul>
     </div>
         </nav>
-        <!-- MAKE ADMIN FORM -->
-            <form class="center-align admin-actions admin" style="margin:20px auto; max-width:300px; display: none">
-                <input type="email" id="admin-email" class="white" placeholder="Admin email" required>
-                <button class="btn-small yellow darken-2">Make admin</button>
-            </form>
 
         <!-- SIGN UP MODAL -->
         <div id="modal-signup" class="modal">
 
             <div class="modal-content center-align">
-                
                 <a class="btn waves-effect waves-light " onclick = "googleSignin()">
                 <img class="googleIcon left-align" src="./img/googleicon.svg" alt="Sign-Up with Google">
                 Sign-Up with Google</a>
                 <hr>
                 <form id="signup-form">
-                    <h6>Email Sign up</h6>
+                    <br>
+                    <h5>Sign-Up with Email</h5>
                     <div class="input-field">
                         <input type="email" id="signup-email" required>
                         <label for="signup-email">Email address </label>
@@ -85,8 +82,12 @@
 
         <!-- LOG IN MODAL -->
         <div id="modal-login" class="modal">
-            <div class="modal-content">
-                <h4>Log in</h4>
+            <div class="modal-content center-align">
+                <a class="btn waves-effect waves-light " onclick = "googleSignin()">
+                    <img class="googleIcon left-align" src="./img/googleicon.svg" alt="Log in with Google">
+                    Log-In with Google</a>
+                    <hr>
+                <h5>Log in with Email</h5>
                 <form id="login-form">
                     <div class="input-field">
                         <input type="email" id="login-email" required>
@@ -127,10 +128,33 @@
             </div>
         </div>
         
-        <div class="container"><a class="waves-effect waves-light btn-large"><i class="material-icons left">add</i>Add a happiness drop!</a>
+        <!-- ADD HAPPINESS DROP MODAL -->
+        <div class="modal" id="modal-addDrop">
+            <div class="modal-content center-align">
+                <div class="row">
+                    <form class="col s12" id="addDropForm">
+                      <div class="row">
+                        <div class="input-field col s12  center-align">
+                            <i class="material-icons prefix">comment</i>
+                          <textarea id="textarea1" class="materialize-textarea" placeholder="" name="dropText" id="dropText"></textarea>
+                          <label for="textarea1">Make somebody smile:</label>
+                        </div>
+                      </div>
+
+                      <button class="btn center-align">
+                        <i class="large material-icons right">cloud</i>
+                        <!-- <img src="./img/drops.png" class="drop-icon-small" alt="Let it rain"> -->
+                        Let it rain!</button>
+
+                      <p class="error pink center-align"></p>
+                    </form>
+                  </div>
+                        
+            </div>
         </div>
+
+
         <!-- DROP SHOWCASE -->
-        <!-- <button onclick = "googleSignout()">Google Signout</button> -->
         <div class="container drop-container">
             <div class="drop center-align box valign-wrapper">
             
@@ -159,7 +183,6 @@
         <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-functions.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -180,7 +203,7 @@
   //MAKE AUTH AND FIRESTORE REFERENCES 
   const auth = firebase.auth();
   const db = firebase.firestore();
-  const functions = firebase.functions();
+  
 
     db.settings({timestampsInSnapshot:true})
 
