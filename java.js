@@ -4,7 +4,7 @@
   //Google provider instance
   var provider =  new firebase.auth.GoogleAuthProvider();
 
-  function googleSignin(source){
+  function googleSignin(){
     firebase.auth().signInWithPopup(provider).then((result)=>{
       var token = result.credential.accessToken;
       var user = result.user;
@@ -57,9 +57,18 @@
 const addDropForm = document.querySelector("#addDropForm");
 addDropForm.addEventListener('submit',(e)=>{
   e.preventDefault();
-  db.collection('drops1').add({
-    dropText: addDropForm[''].value,
-
+  db.collection('drops').add({
+    dropText: addDropForm['dropText'].value,
+    dropCreator: 'name of the user',
+    rating: 0,
+    votedBy: []
+  }).then(()=>{
+    // Close the modal and reset the form
+    const modal = document.querySelector("#modal-addDrop");
+    M.modal.getInstance(modal).close();
+    addDropForm.reset()
+  }, error => {
+    console.log(error.message)
   })
 });
 
