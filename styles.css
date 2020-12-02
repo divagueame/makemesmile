@@ -1,4 +1,21 @@
 body {
-    background-color: black;
-    color: white;
+    background-image: url("img/bg-drops.jpg");
+    background-size: cover;
+}
+
+.drop-container {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: .5rem;
+    margin-top: 1rem;
+    padding: .8rem;
+}
+
+i:hover {
+    scale: 1.1;
+    cursor: pointer;
+}
+
+.drop-icon {
+    width: 4rem;
+    height: 4rem;
 }

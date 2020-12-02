@@ -2,6 +2,9 @@
 <html>
     <head>
         <title>Make me smile</title> 
+        <!-- GOOGLE ICON FONTS -->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" href="./styles.css">
         <meta charset="UTF-8">
@@ -10,38 +13,40 @@
     </head>
     <body > 
         <!-- NAV BAR -->
-        <nav>
-            <div class="nav-wrapper container">
+        <nav class="indigo"> 
+            <div class="nav-wrapper container ">
+                <img src="./img/drops.png" class="drop-icon" alt="Leave a happiness drop">
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li class="logged-in" style="display: none">
-                <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+                <a href="#" class="modal-trigger" data-target="modal-account">Account</a>
             </li>
             <li class="logged-in" style="display: none">
-                <a href="#" id="logout" class="grey-text modal-trigger">Log out</a>
+                <a href="#" id="logout" class="modal-trigger">Log out</a>
             </li>
             <li class="admin" style="display: none">
-                <a href="#"  class="grey-text modal-trigger"  data-target="modal-create">Create guide</a>
+                <a href="#"  class="modal-trigger"  data-target="modal-create">Create guide</a>
             </li>
             <li class="logged-out" style="display: none">
-                <a href="#"  class="grey-text modal-trigger"  data-target="modal-login">Log-in</a>
+                <a href="#"  class="modal-trigger"  data-target="modal-login">Log-in</a>
             </li>
             <li class="logged-out" style="display: none">
-                <a href="#"  class="grey-text  modal-trigger"  data-target="modal-signup">Sign up</a>
+                <a href="#"  class="modal-trigger"  data-target="modal-signup">Sign up</a>
             </li>
         </ul>
     </div>
         </nav>
-
+        <!-- MAKE ADMIN FORM -->
             <form class="center-align admin-actions admin" style="margin:20px auto; max-width:300px; display: none">
                 <input type="email" id="admin-email" class="white" placeholder="Admin email" required>
                 <button class="btn-small yellow darken-2">Make admin</button>
             </form>
+
         <!-- SIGN UP MODAL -->
         <div id="modal-signup" class="modal">
             <div class="modal-content">
-                
                 <button onclick = "googleSignin()">Google Signin</button>
-                <button onclick = "googleSignout()">Google Signout</button>
+
+           
                 <hr>
                 <h4>Sign up</h4>
                 <form id="signup-form">
@@ -117,6 +122,24 @@
             </div>
         </div>
 
+
+        <!-- DROP SHOWCASE -->
+        <button onclick = "googleSignout()">Google Signout</button>
+        <div class="container drop-container">
+            <div class="drop center-align box valign-wrapper">
+            
+            <h2>Today my mom told me she loved me, gave me a cup of tea and kissed me goodbye.</h2>
+        </div>
+        <div class="reactions center-align">
+                <i class="large material-icons">skip_next</i>
+                <i class="large material-icons red-text">favorite</i>
+            </div>
+            <i class="small material-icons">flag</i>
+        </div>
+
+        <br>
+        <br>
+        <br>
         <!-- GUIDE LIST -->
         <div class="container">
             <ul class="collapsible z-depth-0 guides">

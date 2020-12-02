@@ -1,9 +1,6 @@
 /// Auth.js
 
-// const { Console } = require("console");
-
 // Google Auth
-
   //Google provider instance
   var provider =  new firebase.auth.GoogleAuthProvider();
 
@@ -11,20 +8,21 @@
     firebase.auth().signInWithPopup(provider).then((result)=>{
       var token = result.credential.accessToken;
       var user = result.user;
-      console.log("YEAH")
-      console.log(token,user)
+      console.log("You have sucessfully signed through Google")
+      console.log(token,user);
+      const modal = document.querySelector("#modal-signup");
+      M.Modal.getInstance(modal).close();
     }).catch((err)=>{
-      var errorCode = err.code;
       var errorMessage = err.message;
       console.log( errorMessage)
     })
   }
 
   function googleSignout(){
-    console.log("YEAH")
     firebase.auth().signOut().then(()=>{
-      console.log("Sign out successful")
+      console.log("Google user has signed out successfully")
     }).catch((err)=>{
+      console.log("Google user could not sign out.")
       console.log(err.message)
     })
   }
@@ -91,8 +89,7 @@ signupForm.addEventListener('submit', (e) => {
   const email = signupForm['signup-email'].value;
   const password = signupForm['signup-password'].value;
   
-
-  //Sign up user
+  //Sign up user with email
   auth.createUserWithEmailAndPassword(email,password).then(cred => {
     return db.collection('users').doc(cred.user.uid).set({
       'favouriteFruit': signupForm['favourite-fruit'].value
@@ -216,3 +213,8 @@ document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
 });
+
+
+const displayDrop = function(){
+
+};
