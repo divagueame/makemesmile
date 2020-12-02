@@ -11,7 +11,10 @@
       console.log("You have sucessfully signed through Google")
       console.log(token,user);
       const modal = document.querySelector("#modal-signup");
+      const modalLogin = document.querySelector("#modal-login");
+
       M.Modal.getInstance(modal).close();
+      M.Modal.getInstance(modalLogin).close();
     }).catch((err)=>{
       var errorMessage = err.message;
       console.log( errorMessage)
