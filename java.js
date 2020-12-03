@@ -199,7 +199,9 @@ addDropForm.addEventListener('submit',(e)=>{
     // Close the modal and reset the form
     addDropForm.reset();
     const modal = document.querySelector("#modal-addDrop");
-    M.Modal.getInstance(modal).close();
+    const thisModal = M.Modal.getInstance(modal);
+    console.log(thisModal)
+    thisModal.close();
 
     
   }, error => {
