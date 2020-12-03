@@ -53,38 +53,20 @@
 
   });
 
-// Add new drop
-const addDropForm = document.querySelector("#addDropForm");
-addDropForm.addEventListener('submit',(e)=>{
-  e.preventDefault();
-  db.collection('drops').add({
-    dropText: addDropForm['dropText'].value,
-    dropCreator: 'name of the user',
-    rating: 0,
-    votedBy: []
-  }).then(()=>{
-    // Close the modal and reset the form
-    const modal = document.querySelector("#modal-addDrop");
-    M.modal.getInstance(modal).close();
-    addDropForm.reset()
-  }, error => {
-    console.log(error.message)
-  })
-});
 
-  //Create new guide
-  const createForm = document.querySelector("#create-form");
-  createForm.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  db.collection('drops').add({
-    dropsContent: createForm['dropText'].value
-  }).then(()=>{
-    //Close the modal and reset the form
-    const modal = document.querySelector("#modal-create");
-    M.Modal.getInstance(modal).close();
-    createForm.reset();
-  }, error =>{ console.log(error.message)})
-})
+//   //Create new guide
+//   const createForm = document.querySelector("#create-form");
+//   createForm.addEventListener('submit', (e)=>{
+//   e.preventDefault();
+//   db.collection('drops').add({
+//     dropsContent: createForm['dropText'].value
+//   }).then(()=>{
+//     //Close the modal and reset the form
+//     const modal = document.querySelector("#modal-create");
+//     M.Modal.getInstance(modal).close();
+//     createForm.reset();
+//   }, error =>{ console.log(error.message)})
+// })
   //Signup
 const signupForm = document.querySelector("#signup-form");
 signupForm.addEventListener('submit', (e) => {
@@ -132,7 +114,7 @@ loginForm .addEventListener('submit',(e)=>{
     // console.log(cred.user);
 
     //Close the modal and clear the form
-    const modal = document.querySelector("#modal-login");
+    const modal = document.querySelector("#modal-login"); 
     M.Modal.getInstance(modal).close();
     loginForm.reset();
     loginForm.querySelector('.error').innerHTML = '';
@@ -141,10 +123,7 @@ loginForm .addEventListener('submit',(e)=>{
   })
 })
 
-
-
 //Index.js
-
 const guidesList = document.querySelector(".guides");
 const loggedOutLinks = document.querySelectorAll(".logged-out");
 const loggedInLinks = document.querySelectorAll(".logged-in");
@@ -202,19 +181,37 @@ function setupGuides (data){
   } else {
     guidesList.innerHTML = '<h5 class="center-align">Log in to view drops</h5>'
   }
-}
+};
+
+
+
+
+// Add new drop
+const addDropForm = document.querySelector("#addDropForm");
+addDropForm.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  db.collection('drops').add({
+    dropText: addDropForm['dropText'].value,
+    dropCreator: 'user ID',
+    dropRating: 0,
+    votedBy: []
+  }).then(()=>{
+    // Close the modal and reset the form
+    addDropForm.reset();
+    const modal = document.querySelector("#modal-addDrop");
+    M.Modal.getInstance(modal).close();
+
+    
+  }, error => {
+    console.log("ALGO FALLA: ",error.message)
+  })
+});
+
 
 // setup materialize components
 document.addEventListener('DOMContentLoaded', function() {
   var modals = document.querySelectorAll('.modal');
   M.Modal.init(modals);  
-  var items = document.querySelectorAll('.collapsible');
-  M.Collapsible.init(items);
-      var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
 });
 
 
-const displayDrop = function(){
-
-};
